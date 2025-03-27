@@ -1,0 +1,526 @@
+[
+  {
+    "id": "20250327_180429",
+    "timestamp": "2025-03-27 18:04:29",
+    "date": "2025-03-27",
+    "time": "18:04:29",
+    "image": "image_20250327_180429_bird.jpg",
+    "video": "video_20250327_180429.mp4",
+    "type": "bird",
+    "hidden": true
+  },
+  {
+    "id": "20250327_180157",
+    "timestamp": "2025-03-27 18:01:57",
+    "date": "2025-03-27",
+    "time": "18:01:57",
+    "image": "image_20250327_180157_bird.jpg",
+    "video": "video_20250327_180157.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_171051",
+    "timestamp": "2025-03-27 17:10:51",
+    "date": "2025-03-27",
+    "time": "17:10:51",
+    "image": "image_20250327_171051_bird.jpg",
+    "video": "video_20250327_171051.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_165702",
+    "timestamp": "2025-03-27 16:57:02",
+    "date": "2025-03-27",
+    "time": "16:57:02",
+    "image": "image_20250327_165702_bird.jpg",
+    "video": "video_20250327_165702.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_165613",
+    "timestamp": "2025-03-27 16:56:13",
+    "date": "2025-03-27",
+    "time": "16:56:13",
+    "image": "image_20250327_165613_bird.jpg",
+    "video": "video_20250327_165613.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_165038",
+    "timestamp": "2025-03-27 16:50:38",
+    "date": "2025-03-27",
+    "time": "16:50:38",
+    "image": "image_20250327_165038_bird.jpg",
+    "video": "video_20250327_165038.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_161410",
+    "timestamp": "2025-03-27 16:14:10",
+    "date": "2025-03-27",
+    "time": "16:14:10",
+    "image": "image_20250327_161410_bird.jpg",
+    "video": "video_20250327_161410.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_161348",
+    "timestamp": "2025-03-27 16:13:48",
+    "date": "2025-03-27",
+    "time": "16:13:48",
+    "image": "image_20250327_161348_bird.jpg",
+    "video": "video_20250327_161348.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_160600",
+    "timestamp": "2025-03-27 16:06:00",
+    "date": "2025-03-27",
+    "time": "16:06:00",
+    "image": "image_20250327_160600_bird.jpg",
+    "video": "video_20250327_160600.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_160539",
+    "timestamp": "2025-03-27 16:05:39",
+    "date": "2025-03-27",
+    "time": "16:05:39",
+    "image": "image_20250327_160539_bird.jpg",
+    "video": "video_20250327_160539.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_154907",
+    "timestamp": "2025-03-27 15:49:07",
+    "date": "2025-03-27",
+    "time": "15:49:07",
+    "image": "image_20250327_154907_bird.jpg",
+    "video": "video_20250327_154907.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_152213",
+    "timestamp": "2025-03-27 15:22:13",
+    "date": "2025-03-27",
+    "time": "15:22:13",
+    "image": "image_20250327_152213_bird.jpg",
+    "video": "video_20250327_152213.mp4",
+    "type": "bird",
+    "hidden": true
+  },
+  {
+    "id": "20250327_151654",
+    "timestamp": "2025-03-27 15:16:54",
+    "date": "2025-03-27",
+    "time": "15:16:54",
+    "image": "image_20250327_151654_bird.jpg",
+    "video": "video_20250327_151654.mp4",
+    "type": "bird",
+    "hidden": true
+  },
+  {
+    "id": "20250327_151206",
+    "timestamp": "2025-03-27 15:12:06",
+    "date": "2025-03-27",
+    "time": "15:12:06",
+    "image": "image_20250327_151206_bird.jpg",
+    "video": "video_20250327_151206.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_151144",
+    "timestamp": "2025-03-27 15:11:44",
+    "date": "2025-03-27",
+    "time": "15:11:44",
+    "image": "image_20250327_151144_bird.jpg",
+    "video": "video_20250327_151144.mp4",
+    "type": "bird",
+    "hidden": true
+  },
+  {
+    "id": "20250327_151124",
+    "timestamp": "2025-03-27 15:11:24",
+    "date": "2025-03-27",
+    "time": "15:11:24",
+    "image": "image_20250327_151124_bird.jpg",
+    "video": "video_20250327_151124.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_151100",
+    "timestamp": "2025-03-27 15:11:00",
+    "date": "2025-03-27",
+    "time": "15:11:00",
+    "image": "image_20250327_151100_bird.jpg",
+    "video": "video_20250327_151100.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_150827",
+    "timestamp": "2025-03-27 15:08:27",
+    "date": "2025-03-27",
+    "time": "15:08:27",
+    "image": "image_20250327_150827_bird.jpg",
+    "video": "video_20250327_150827.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_150737",
+    "timestamp": "2025-03-27 15:07:37",
+    "date": "2025-03-27",
+    "time": "15:07:37",
+    "image": "image_20250327_150737_bird.jpg",
+    "video": "video_20250327_150737.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_150716",
+    "timestamp": "2025-03-27 15:07:16",
+    "date": "2025-03-27",
+    "time": "15:07:16",
+    "image": "image_20250327_150716_bird.jpg",
+    "video": "video_20250327_150716.mp4",
+    "type": "bird",
+    "hidden": true
+  },
+  {
+    "id": "20250327_150550",
+    "timestamp": "2025-03-27 15:05:50",
+    "date": "2025-03-27",
+    "time": "15:05:50",
+    "image": "image_20250327_150550_bird.jpg",
+    "video": "video_20250327_150550.mp4",
+    "type": "bird",
+    "hidden": true
+  },
+  {
+    "id": "20250327_150521",
+    "timestamp": "2025-03-27 15:05:21",
+    "date": "2025-03-27",
+    "time": "15:05:21",
+    "image": "image_20250327_150521_bird.jpg",
+    "video": "video_20250327_150521.mp4",
+    "type": "bird",
+    "hidden": true
+  },
+  {
+    "id": "20250327_150410",
+    "timestamp": "2025-03-27 15:04:10",
+    "date": "2025-03-27",
+    "time": "15:04:10",
+    "image": "image_20250327_150410_bird.jpg",
+    "video": "video_20250327_150410.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_150233",
+    "timestamp": "2025-03-27 15:02:33",
+    "date": "2025-03-27",
+    "time": "15:02:33",
+    "image": "image_20250327_150233_bird.jpg",
+    "video": "video_20250327_150233.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_150141",
+    "timestamp": "2025-03-27 15:01:41",
+    "date": "2025-03-27",
+    "time": "15:01:41",
+    "image": "image_20250327_150141_bird.jpg",
+    "video": "video_20250327_150141.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_150113",
+    "timestamp": "2025-03-27 15:01:13",
+    "date": "2025-03-27",
+    "time": "15:01:13",
+    "image": "image_20250327_150113_bird.jpg",
+    "video": "video_20250327_150113.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_150032",
+    "timestamp": "2025-03-27 15:00:32",
+    "date": "2025-03-27",
+    "time": "15:00:32",
+    "image": "image_20250327_150032_bird.jpg",
+    "video": "video_20250327_150032.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_145812",
+    "timestamp": "2025-03-27 14:58:12",
+    "date": "2025-03-27",
+    "time": "14:58:12",
+    "image": "image_20250327_145812_bird.jpg",
+    "video": "video_20250327_145812.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_145751",
+    "timestamp": "2025-03-27 14:57:51",
+    "date": "2025-03-27",
+    "time": "14:57:51",
+    "image": "image_20250327_145751_bird.jpg",
+    "video": "video_20250327_145751.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_145605",
+    "timestamp": "2025-03-27 14:56:05",
+    "date": "2025-03-27",
+    "time": "14:56:05",
+    "image": "image_20250327_145605_bird.jpg",
+    "video": "video_20250327_145605.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_145528",
+    "timestamp": "2025-03-27 14:55:28",
+    "date": "2025-03-27",
+    "time": "14:55:28",
+    "image": "image_20250327_145528_bird.jpg",
+    "video": "video_20250327_145528.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_145408",
+    "timestamp": "2025-03-27 14:54:08",
+    "date": "2025-03-27",
+    "time": "14:54:08",
+    "image": "image_20250327_145408_bird.jpg",
+    "video": "video_20250327_145408.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_144525",
+    "timestamp": "2025-03-27 14:45:25",
+    "date": "2025-03-27",
+    "time": "14:45:25",
+    "image": "image_20250327_144525_bird.jpg",
+    "video": "video_20250327_144525.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_143804",
+    "timestamp": "2025-03-27 14:38:04",
+    "date": "2025-03-27",
+    "time": "14:38:04",
+    "image": "image_20250327_143804_bird.jpg",
+    "video": "video_20250327_143804.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_142606",
+    "timestamp": "2025-03-27 14:26:06",
+    "date": "2025-03-27",
+    "time": "14:26:06",
+    "image": "image_20250327_142606_bird.jpg",
+    "video": "video_20250327_142606.mp4",
+    "type": "bird",
+    "hidden": true
+  },
+  {
+    "id": "20250327_142503",
+    "timestamp": "2025-03-27 14:25:03",
+    "date": "2025-03-27",
+    "time": "14:25:03",
+    "image": "image_20250327_142503_bird.jpg",
+    "video": "video_20250327_142503.mp4",
+    "type": "bird",
+    "hidden": true
+  },
+  {
+    "id": "20250327_142429",
+    "timestamp": "2025-03-27 14:24:29",
+    "date": "2025-03-27",
+    "time": "14:24:29",
+    "image": "image_20250327_142429_bird.jpg",
+    "video": "video_20250327_142429.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_142302",
+    "timestamp": "2025-03-27 14:23:02",
+    "date": "2025-03-27",
+    "time": "14:23:02",
+    "image": "image_20250327_142302_bird.jpg",
+    "video": "video_20250327_142302.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_141310",
+    "timestamp": "2025-03-27 14:13:10",
+    "date": "2025-03-27",
+    "time": "14:13:10",
+    "image": "image_20250327_141310_bird.jpg",
+    "video": "video_20250327_141310.mp4",
+    "type": "bird",
+    "hidden": true
+  },
+  {
+    "id": "20250327_141248",
+    "timestamp": "2025-03-27 14:12:48",
+    "date": "2025-03-27",
+    "time": "14:12:48",
+    "image": "image_20250327_141248_bird.jpg",
+    "video": "video_20250327_141248.mp4",
+    "type": "bird"
+  },
+  {
+    "id": "20250327_141143",
+    "timestamp": "2025-03-27 14:11:43",
+    "date": "2025-03-27",
+    "time": "14:11:43",
+    "image": "image_20250327_141143_bird.jpg",
+    "video": "video_20250327_141143.mp4",
+    "type": "bird",
+    "hidden": true
+  },
+  {
+    "id": "20250327_131153",
+    "timestamp": "2025-03-27 13:11:53",
+    "date": "2025-03-27",
+    "time": "13:11:53",
+    "image": "image_20250327_131153_movement.jpg",
+    "video": "video_20250327_131153.mp4",
+    "type": "statue"
+  },
+  {
+    "id": "20250327_130520",
+    "timestamp": "2025-03-27 13:05:20",
+    "date": "2025-03-27",
+    "time": "13:05:20",
+    "image": "image_20250327_130520_movement.jpg",
+    "video": "video_20250327_130520.mp4",
+    "type": "statue"
+  },
+  {
+    "id": "20250327_125655",
+    "timestamp": "2025-03-27 12:56:55",
+    "date": "2025-03-27",
+    "time": "12:56:55",
+    "image": "image_20250327_125655_movement.jpg",
+    "video": "video_20250327_125655.mp4",
+    "type": "statue"
+  },
+  {
+    "id": "20250327_125449",
+    "timestamp": "2025-03-27 12:54:49",
+    "date": "2025-03-27",
+    "time": "12:54:49",
+    "image": "image_20250327_125449_movement.jpg",
+    "video": "video_20250327_125449.mp4",
+    "type": "statue"
+  },
+  {
+    "id": "20250327_125058",
+    "timestamp": "2025-03-27 12:50:58",
+    "date": "2025-03-27",
+    "time": "12:50:58",
+    "image": "image_20250327_125058_movement.jpg",
+    "video": "video_20250327_125058.mp4",
+    "type": "statue"
+  },
+  {
+    "id": "20250327_112049",
+    "timestamp": "2025-03-27 11:20:49",
+    "date": "2025-03-27",
+    "time": "11:20:49",
+    "image": "image_20250327_112049_movement.jpg",
+    "video": "video_20250327_112049.mp4",
+    "type": "statue",
+    "hidden": true
+  },
+  {
+    "id": "20250327_110657",
+    "timestamp": "2025-03-27 11:06:57",
+    "date": "2025-03-27",
+    "time": "11:06:57",
+    "image": "image_20250327_110657_movement.jpg",
+    "video": "video_20250327_110657.mp4",
+    "type": "statue",
+    "hidden": true
+  },
+  {
+    "id": "20250327_110419",
+    "timestamp": "2025-03-27 11:04:19",
+    "date": "2025-03-27",
+    "time": "11:04:19",
+    "image": "image_20250327_110419_movement.jpg",
+    "video": "video_20250327_110419.mp4",
+    "type": "statue"
+  },
+  {
+    "id": "20250327_082853",
+    "timestamp": "2025-03-27 08:28:53",
+    "date": "2025-03-27",
+    "time": "08:28:53",
+    "image": "image_20250327_082853_movement.jpg",
+    "video": "video_20250327_082853.mp4",
+    "type": "statue",
+    "hidden": true
+  },
+  {
+    "id": "20250326_194339",
+    "timestamp": "2025-03-26 19:43:39",
+    "date": "2025-03-26",
+    "time": "19:43:39",
+    "image": "image_20250326_194339_movement.jpg",
+    "video": "video_20250326_194339.mp4",
+    "type": "bird",
+    "hidden": true
+  },
+  {
+    "id": "20250326_194158",
+    "timestamp": "2025-03-26 19:41:58",
+    "date": "2025-03-26",
+    "time": "19:41:58",
+    "image": "image_20250326_194339_movement.jpg",
+    "video": "video_20250326_194339.mp4",
+    "type": "bird",
+    "hidden": true
+  },
+  {
+    "id": "20250326_194129",
+    "timestamp": "2025-03-26 19:41:29",
+    "date": "2025-03-26",
+    "time": "19:41:29",
+    "image": "image_20250326_194339_movement.jpg",
+    "video": "video_20250326_194339.mp4",
+    "type": "bird",
+    "hidden": true
+  },
+  {
+    "id": "20250326_193313",
+    "timestamp": "2025-03-26 19:33:13",
+    "date": "2025-03-26",
+    "time": "19:33:13",
+    "image": "image_20250326_194339_movement.jpg",
+    "video": "video_20250326_194339.mp4",
+    "type": "bird",
+    "hidden": true
+  },
+  {
+    "id": "20250326_193141",
+    "timestamp": "2025-03-26 19:31:41",
+    "date": "2025-03-26",
+    "time": "19:31:41",
+    "image": "image_20250326_194339_movement.jpg",
+    "video": "video_20250326_194339.mp4",
+    "type": "bird",
+    "hidden": true
+  },
+  {
+    "id": "20250326_192617",
+    "timestamp": "2025-03-26 19:26:17",
+    "date": "2025-03-26",
+    "time": "19:26:17",
+    "image": "image_20250326_194339_movement.jpg",
+    "video": "video_20250326_194339.mp4",
+    "type": "bird",
+    "hidden": true
+  }
+]

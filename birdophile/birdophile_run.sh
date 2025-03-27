@@ -1,0 +1,1 @@
+python3 /home/timotej/dev/birdophile/camera_service_buffer.py

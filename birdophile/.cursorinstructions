@@ -1,0 +1,9 @@
+we will install a rpi with camera 3 module inside a birdfeeder to detect birds, snap a photo and capture a video of their appearance.
+
+## current problem with detection
+
+we're trying to detect birds inside a birdfeeder or now in testing stage, this statue. upon dozens of refactorings, we still don't detect movement and at best get false positives (shadows in the corner of image, jerky movements of camera focusing or shaking). when parading the statue in front of the camera, fucking nothing!
+
+## next step
+
+@camera_service.py is where detection and capture happens. a disconnected parallel service, possibly running independently. it should be a local web application that shows a stream of captured snapshot. clicking each plays the video. think if we need to do a python implementation (flask) or would it be easier to build it in nextjs or nuxtjs. the integration could be such that in addition to saving an image and video upon sighting, the camera_service.py would also update a json file in an agreed upon format. website could either detect the change or recieve an additional webhook to refresh the feed.
