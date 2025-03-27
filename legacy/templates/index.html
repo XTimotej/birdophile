@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birdophile - Smart Bird Feeder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .bird-card {
+            transition: transform 0.3s ease;
+        }
+        .bird-card:hover {
+            transform: translateY(-5px);
+        }
+        .bird-image {
+            height: 250px;
+            object-fit: cover;
+        }
+        .camera-feed {
+            width: 100%;
+            max-width: 640px;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .video-container {
+            width: 80%;
+            max-width: 800px;
+            background-color: #fff;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .video-container video {
+            width: 100%;
+            display: block;
+        }
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <header class="bg-primary-700 text-white rounded-lg shadow-lg mb-8 py-6">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold">Birdophile</h1>
+                <p class="text-lg mt-2">Smart Bird Feeder - Monitoring and identifying birds in real-time</p>
+            </div>
+        </header>
+
+        <main>
+            <!-- Camera Section -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-2xl font-semibold mb-4 text-primary-700">Live Camera Feed</h2>
+                <div class="flex flex-col md:flex-row gap-6">
+                    <div class="md:w-2/3">
+                        <div class="camera-feed-container relative">
+                            <img id="camera-feed" src="/camera/stream" alt="Live Camera Feed" class="camera-feed">
+                            <div id="camera-status" class="absolute top-2 right-2 bg-primary-500 text-white text-xs px-2 py-1 rounded-full">
+                                Live
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/3">
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <h3 class="text-lg font-medium mb-3 text-gray-800">Camera Controls</h3>
+                            <div class="space-y-3">
+                                <button id="btn-toggle-camera" class="w-full bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded transition">
+                                    Stop Camera
+                                </button>
+                            </div>
+                            <div class="mt-4">
+                                <h4 class="text-sm font-medium text-gray-700 mb-2">Status</h4>
+                                <div id="camera-info" class="text-sm text-gray-600">
+                                    <p>Camera: <span id="status-camera">Running</span></p>
+                                    <p>Detection: <span id="status-detection">Active</span></p>
+                                    <p>Last event: <span id="status-last-event">None</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-6 flex justify-between items-center">
+                <h2 class="text-2xl font-semibold text-primary-700">Recent Bird Sightings</h2>
+                <div>
+                    <button id="refresh-btn" class="bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded transition">
+                        Refresh
+                    </button>
+                </div>
+            </div>
+
+            <!-- Bird Sightings Grid -->
+            <div id="sightings-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% if sightings %}
+                    {% for sighting in sightings|sort(attribute='timestamp', reverse=True) %}
+                        <div class="bird-card bg-white rounded-lg shadow-md overflow-hidden">
+                            <div class="relative">
+                                <img src="{{ sighting.image_path }}" alt="{{ sighting.species }}" class="bird-image w-full">
+                                <div class="absolute top-2 right-2 bg-primary-500 text-white text-xs px-2 py-1 rounded-full">
+                                    {{ sighting.species }}
+                                </div>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h3 class="text-lg font-semibold text-gray-800">{{ sighting.species }}</h3>
+                                    <span class="text-xs text-gray-500">
+                                        {{ sighting.timestamp|replace("T", " ")|replace("Z", "")|truncate(16, True, "") }}
+                                    </span>
+                                </div>
+                                {% if sighting.video_path %}
+                                    <button class="view-video-btn block mt-2 text-primary-600 hover:text-primary-800 text-sm" 
+                                            data-video="{{ sighting.video_path }}">
+                                        View Video
+                                    </button>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="col-span-3 text-center py-12">
+                        <p class="text-gray-500 text-lg">No bird sightings recorded yet. Birds will appear here when detected.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </main>
+
+        <footer class="mt-12 text-center text-gray-500 text-sm py-6">
+            <p>&copy; 2025 Birdophile - Smart Bird Feeder</p>
+        </footer>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="video-modal">
+        <span class="modal-close">&times;</span>
+        <div class="video-container">
+            <video id="video-player" controls playsinline>
+                <source src="" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div id="video-error-message" class="hidden p-4 bg-red-100 text-red-800 rounded mt-4">
+                Unable to play video. <a id="video-download-link" href="#" class="underline">Download it instead</a>.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Refresh sightings data
+        document.getElementById('refresh-btn').addEventListener('click', function() {
+            fetchSightings();
+        });
+
+        // Fetch sightings from API
+        function fetchSightings() {
+            console.log("Fetching sightings from API...");
+            fetch('/api/sightings')
+                .then(response => {
+                    console.log("API response status:", response.status);
+                    return response.json();
+                })
+                .then(data => {
+                    console.log("Received sightings data:", data.length, "items");
+                    console.log("First few sightings:", data.slice(0, 3));
+                    updateSightingsDisplay(data);
+                })
+                .catch(error => {
+                    console.error('Error fetching sightings:', error);
+                });
+        }
+
+        // Update the sightings display
+        function updateSightingsDisplay(sightings) {
+            console.log("Updating sightings display...");
+            const container = document.getElementById('sightings-container');
+            
+            if (!sightings || sightings.length === 0) {
+                console.log("No sightings to display");
+                container.innerHTML = `
+                    <div class="col-span-3 text-center py-12">
+                        <p class="text-gray-500 text-lg">No bird sightings recorded yet. Birds will appear here when detected.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Sort by timestamp (newest first)
+            try {
+                sightings.sort((a, b) => {
+                    // Try to parse ISO format first
+                    let dateA, dateB;
+                    
+                    // Handle different timestamp formats
+                    if (a.timestamp.includes('T')) {
+                        // ISO format
+                        dateA = new Date(a.timestamp);
+                    } else if (a.timestamp.includes('_')) {
+                        // YYYYMMDD_HHMMSS format
+                        const parts = a.timestamp.split('_');
+                        const datePart = parts[0];
+                        const timePart = parts[1] || '000000';
+                        const year = datePart.substring(0, 4);
+                        const month = datePart.substring(4, 6);
+                        const day = datePart.substring(6, 8);
+                        const hour = timePart.substring(0, 2);
+                        const minute = timePart.substring(2, 4);
+                        const second = timePart.substring(4, 6);
+                        dateA = new Date(`${year}-${month}-${day}T${hour}:${minute}:${second}`);
+                    } else {
+                        // Unknown format, use as string
+                        dateA = new Date(0);
+                    }
+                    
+                    if (b.timestamp.includes('T')) {
+                        // ISO format
+                        dateB = new Date(b.timestamp);
+                    } else if (b.timestamp.includes('_')) {
+                        // YYYYMMDD_HHMMSS format
+                        const parts = b.timestamp.split('_');
+                        const datePart = parts[0];
+                        const timePart = parts[1] || '000000';
+                        const year = datePart.substring(0, 4);
+                        const month = datePart.substring(4, 6);
+                        const day = datePart.substring(6, 8);
+                        const hour = timePart.substring(0, 2);
+                        const minute = timePart.substring(2, 4);
+                        const second = timePart.substring(4, 6);
+                        dateB = new Date(`${year}-${month}-${day}T${hour}:${minute}:${second}`);
+                    } else {
+                        // Unknown format, use as string
+                        dateB = new Date(0);
+                    }
+                    
+                    console.log(`Comparing: ${a.timestamp} (${dateA}) vs ${b.timestamp} (${dateB})`);
+                    return dateB - dateA;
+                });
+                console.log("Sorted sightings, newest first:", sightings[0].id);
+            } catch (error) {
+                console.error("Error sorting sightings:", error);
+            }
+            
+            // Check if we have new sightings compared to what's currently displayed
+            const currentFirstSighting = container.querySelector('.bird-card');
+            let hasNewSightings = false;
+            
+            if (currentFirstSighting) {
+                const currentFirstId = currentFirstSighting.getAttribute('data-id');
+                hasNewSightings = sightings.length > 0 && sightings[0].id !== currentFirstId;
+                console.log("Current first sighting:", currentFirstId, "New first sighting:", sightings[0].id, "Has new sightings:", hasNewSightings);
+            } else {
+                hasNewSightings = sightings.length > 0;
+                console.log("No existing sightings displayed, has new sightings:", hasNewSightings);
+            }
+            
+            // If we have new sightings, show a notification
+            if (hasNewSightings) {
+                document.getElementById('status-last-event').textContent = 'New bird detected!';
+                document.getElementById('status-last-event').classList.add('text-primary-600', 'font-bold');
+                
+                // Remove the highlight after 5 seconds
+                setTimeout(() => {
+                    document.getElementById('status-last-event').classList.remove('text-primary-600', 'font-bold');
+                }, 5000);
+            }
+            
+            let html = '';
+            sightings.forEach(sighting => {
+                const timestamp = sighting.timestamp.replace('T', ' ').replace('Z', '').substring(0, 16);
+                
+                html += `
+                    <div class="bird-card bg-white rounded-lg shadow-md overflow-hidden" data-id="${sighting.id}">
+                        <div class="relative">
+                            <img src="${sighting.image_path}" alt="${sighting.species}" class="bird-image w-full">
+                            <div class="absolute top-2 right-2 bg-primary-500 text-white text-xs px-2 py-1 rounded-full">
+                                ${sighting.species}
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex justify-between items-center mb-2">
+                                <h3 class="text-lg font-semibold text-gray-800">${sighting.species}</h3>
+                                <span class="text-xs text-gray-500">${timestamp}</span>
+                            </div>
+                            ${sighting.video_path ? `
+                                <button class="view-video-btn block mt-2 text-primary-600 hover:text-primary-800 text-sm" 
+                                        data-video="${sighting.video_path}">
+                                    View Video
+                                </button>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+            
+            // Add event listeners to video buttons
+            setupVideoButtons();
+        }
+
+        // Camera controls
+        document.getElementById('btn-toggle-camera').addEventListener('click', function() {
+            const button = document.getElementById('btn-toggle-camera');
+            const action = button.textContent.includes('Stop') ? 'stop' : 'start';
+            
+            button.disabled = true;
+            button.classList.add('opacity-75');
+            
+            fetch('/camera/control', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ action: action }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                button.disabled = false;
+                button.classList.remove('opacity-75');
+                
+                if (data.status === 'stopped') {
+                    button.textContent = 'Start Camera';
+                    button.classList.remove('bg-gray-600', 'hover:bg-gray-700');
+                    button.classList.add('bg-primary-600', 'hover:bg-primary-700');
+                    document.getElementById('status-camera').textContent = 'Stopped';
+                    document.getElementById('camera-status').classList.remove('bg-primary-500');
+                    document.getElementById('camera-status').classList.add('bg-gray-500');
+                    document.getElementById('camera-status').textContent = 'Offline';
+                } else if (data.status === 'started' || data.status === 'reinitialized' || data.status === 'already_running') {
+                    button.textContent = 'Stop Camera';
+                    button.classList.remove('bg-primary-600', 'hover:bg-primary-700');
+                    button.classList.add('bg-gray-600', 'hover:bg-gray-700');
+                    document.getElementById('status-camera').textContent = 'Running';
+                    document.getElementById('camera-status').classList.remove('bg-gray-500');
+                    document.getElementById('camera-status').classList.add('bg-primary-500');
+                    document.getElementById('camera-status').textContent = 'Live';
+                    
+                    // Refresh the camera feed by reloading the image
+                    const cameraFeed = document.getElementById('camera-feed');
+                    const currentSrc = cameraFeed.src;
+                    cameraFeed.src = '';
+                    setTimeout(() => {
+                        cameraFeed.src = currentSrc;
+                    }, 500);
+                }
+            })
+            .catch(error => {
+                console.error('Error controlling camera:', error);
+                button.disabled = false;
+                button.classList.remove('opacity-75');
+            });
+        });
+
+        // Check camera status periodically
+        function updateCameraStatus() {
+            fetch('/camera/status')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('status-camera').textContent = data.status === 'running' ? 'Running' : 'Stopped';
+                    document.getElementById('status-detection').textContent = data.status === 'running' ? 'Active' : 'Inactive';
+                    
+                    const button = document.getElementById('btn-toggle-camera');
+                    if (data.status === 'running') {
+                        button.textContent = 'Stop Camera';
+                        button.classList.remove('bg-primary-600', 'hover:bg-primary-700');
+                        button.classList.add('bg-gray-600', 'hover:bg-gray-700');
+                        document.getElementById('camera-status').classList.remove('bg-gray-500');
+                        document.getElementById('camera-status').classList.add('bg-primary-500');
+                        document.getElementById('camera-status').textContent = 'Live';
+                    } else {
+                        button.textContent = 'Start Camera';
+                        button.classList.remove('bg-gray-600', 'hover:bg-gray-700');
+                        button.classList.add('bg-primary-600', 'hover:bg-primary-700');
+                        document.getElementById('camera-status').classList.remove('bg-primary-500');
+                        document.getElementById('camera-status').classList.add('bg-gray-500');
+                        document.getElementById('camera-status').textContent = 'Offline';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error checking camera status:', error);
+                });
+        }
+        
+        // Video modal functionality
+        function setupVideoButtons() {
+            const modal = document.getElementById('video-modal');
+            const videoPlayer = document.getElementById('video-player');
+            const closeBtn = document.querySelector('.modal-close');
+            const errorMessage = document.getElementById('video-error-message');
+            const downloadLink = document.getElementById('video-download-link');
+            
+            // Add click event to all video buttons
+            document.querySelectorAll('.view-video-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const videoPath = this.getAttribute('data-video');
+                    const videoSource = videoPlayer.querySelector('source');
+                    
+                    // Reset error message
+                    errorMessage.classList.add('hidden');
+                    
+                    // Set download link
+                    downloadLink.href = videoPath;
+                    
+                    // Set video source
+                    videoSource.src = videoPath;
+                    videoPlayer.load();
+                    
+                    // Show modal
+                    modal.style.display = 'flex';
+                    
+                    // Try to play the video
+                    const playPromise = videoPlayer.play();
+                    
+                    if (playPromise !== undefined) {
+                        playPromise.then(_ => {
+                            // Playback started successfully
+                            console.log('Video playback started successfully');
+                        })
+                        .catch(error => {
+                            // Auto-play was prevented or there was an error
+                            console.error('Error playing video:', error);
+                            
+                            // Show error message with download link
+                            errorMessage.classList.remove('hidden');
+                        });
+                    }
+                });
+            });
+            
+            // Handle video error event
+            videoPlayer.addEventListener('error', function() {
+                console.error('Video error occurred');
+                errorMessage.classList.remove('hidden');
+            });
+            
+            // Close modal when clicking the close button
+            closeBtn.addEventListener('click', function() {
+                videoPlayer.pause();
+                modal.style.display = 'none';
+                // Reset video source to prevent continued downloading
+                videoPlayer.querySelector('source').src = '';
+                videoPlayer.load();
+            });
+            
+            // Close modal when clicking outside the video
+            modal.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    videoPlayer.pause();
+                    modal.style.display = 'none';
+                    // Reset video source to prevent continued downloading
+                    videoPlayer.querySelector('source').src = '';
+                    videoPlayer.load();
+                }
+            });
+        }
+        
+        // Setup video buttons on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            setupVideoButtons();
+        });
+
+        // Initial load
+        fetchSightings();
+        updateCameraStatus();
+        
+        // Refresh data periodically
+        setInterval(fetchSightings, 5000);  // every 5 seconds (decreased from 10 seconds)
+        setInterval(updateCameraStatus, 5000);  // every 5 seconds
+
+        // Camera stream error handling and reconnection
+        document.addEventListener('DOMContentLoaded', function() {
+            const cameraFeed = document.getElementById('camera-feed');
+            const cameraStatus = document.getElementById('camera-status');
+            let reconnectAttempts = 0;
+            const maxReconnectAttempts = 5;
+            
+            // Function to handle stream errors
+            function handleStreamError() {
+                console.error('Camera stream error detected');
+                cameraStatus.textContent = 'Connection Lost';
+                cameraStatus.classList.remove('bg-primary-500');
+                cameraStatus.classList.add('bg-red-500');
+                
+                // Attempt to reconnect if we haven't reached the maximum attempts
+                if (reconnectAttempts < maxReconnectAttempts) {
+                    reconnectAttempts++;
+                    const delay = Math.min(2000 * reconnectAttempts, 10000); // Exponential backoff, max 10 seconds
+                    
+                    console.log(`Attempting to reconnect in ${delay/1000} seconds (attempt ${reconnectAttempts}/${maxReconnectAttempts})`);
+                    setTimeout(reconnectStream, delay);
+                } else {
+                    cameraStatus.textContent = 'Offline';
+                    cameraStatus.classList.remove('bg-red-500');
+                    cameraStatus.classList.add('bg-gray-500');
+                    console.error('Maximum reconnection attempts reached');
+                }
+            }
+            
+            // Function to reconnect the stream
+            function reconnectStream() {
+                console.log('Reconnecting camera stream...');
+                cameraStatus.textContent = 'Reconnecting...';
+                cameraStatus.classList.remove('bg-red-500', 'bg-gray-500');
+                cameraStatus.classList.add('bg-yellow-500');
+                
+                // Create a new timestamp to prevent caching
+                const timestamp = new Date().getTime();
+                cameraFeed.src = `/camera/stream?t=${timestamp}`;
+            }
+            
+            // Function to handle successful connection
+            function handleStreamSuccess() {
+                console.log('Camera stream connected successfully');
+                cameraStatus.textContent = 'Live';
+                cameraStatus.classList.remove('bg-red-500', 'bg-yellow-500', 'bg-gray-500');
+                cameraStatus.classList.add('bg-primary-500');
+                reconnectAttempts = 0; // Reset the counter on success
+            }
+            
+            // Set up event listeners for the camera feed
+            cameraFeed.addEventListener('error', handleStreamError);
+            cameraFeed.addEventListener('load', handleStreamSuccess);
+            
+            // Also check periodically if the image is actually updating
+            let lastImageSrc = cameraFeed.src;
+            setInterval(function() {
+                if (cameraFeed.src === lastImageSrc && reconnectAttempts === 0) {
+                    // If the image source hasn't changed in 10 seconds, it might be frozen
+                    console.warn('Camera feed might be frozen, forcing refresh');
+                    handleStreamError();
+                }
+                lastImageSrc = cameraFeed.src;
+            }, 10000); // Check every 10 seconds
+        });
+    </script>
+</body>
+</html> 

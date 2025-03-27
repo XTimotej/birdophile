@@ -1,0 +1,19 @@
+# Legacy project specific ignores
+
+# Logs
+*.log
+birdweb.log
+
+# Uploaded content
+uploads/*
+!uploads/.gitkeep
+
+# Temporary files
+*.tmp
+
+# Environment specific files
+.env.local
+
+# Generated files
+*.pyc
+__pycache__/ 

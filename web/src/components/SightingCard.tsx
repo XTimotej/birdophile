@@ -87,7 +87,7 @@ export function SightingCard({ sighting, onHide }: { sighting: Sighting, onHide?
           <div className="flex items-center gap-2">
             {/* {sighting.type} */}
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="24" width="24" className="w-5 h-5">
-            <g ><path id="Union" fill="#000000" fill-rule="evenodd" d="M14.9999 1h-1.5166L0.00439453 20H10v3h2v-3h0.9999c0.3381 0 0.6717 -0.0186 1.0001 -0.0549V23h2v-3.5121c3.4955 -1.2356 5.9999 -4.5693 5.9999 -8.4879V9H24V7h-2.0709c-0.4853 -3.39229 -3.4027 -6 -6.9292 -6ZM16 9V6h2v3h-2Z" clipRule="evenodd" strokeWidth="1"></path></g></svg>
+            <g ><path id="Union" fill="#000000" fillRule="evenodd" d="M14.9999 1h-1.5166L0.00439453 20H10v3h2v-3h0.9999c0.3381 0 0.6717 -0.0186 1.0001 -0.0549V23h2v-3.5121c3.4955 -1.2356 5.9999 -4.5693 5.9999 -8.4879V9H24V7h-2.0709c-0.4853 -3.39229 -3.4027 -6 -6.9292 -6ZM16 9V6h2v3h-2Z" clipRule="evenodd" strokeWidth="1"></path></g></svg>
             <span className="text-sm ">{sighting.date}</span>
           </div>
           <div className="flex items-center gap-2">

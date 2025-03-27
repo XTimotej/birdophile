@@ -1,0 +1,14 @@
+Flask==2.3.3
+Werkzeug==2.3.7
+Jinja2==3.1.2
+requests==2.31.0
+Pillow==10.0.0
+python-dotenv==1.0.0
+gunicorn==21.2.0
+opencv-python==4.8.0.76
+numpy==1.25.2
+# picamera2 is installed via apt, not pip
+# sudo apt-get install -y python3-picamera2
+# Additional dependencies for camera handling
+opencv-contrib-python==4.8.0.76
+imutils==0.5.4
